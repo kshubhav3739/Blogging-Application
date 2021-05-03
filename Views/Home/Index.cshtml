@@ -1,0 +1,94 @@
+﻿@{
+Layout="~/Views/Shared/HomeLayout.cshtml";
+ViewData["Title"] = "Home Page";
+}
+
+@section Navigation{
+<li class="nav-item active">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Index">Home</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Blogs">Blogs</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Login">Login</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Register">Register</a>
+</li>
+}
+
+<!--Section: Jumbotron-->
+<section class="card blue-gradient wow fadeIn">
+
+  <!-- Content -->
+  <div class="card-body text-white text-center py-5 px-5 my-5">
+
+    <h1 class="mb-4">
+      <strong>Blogging App</strong>
+    </h1>
+    <p>
+      <strong>Easiest Way to make your own Blogs</strong>
+    </p>
+    <p class="mb-4">
+      <strong>It is a blog-publishing service that allows multi-user blogs with time-stamped entries. it’s now easier
+        than ever to create a professional-looking blog to share a hobby with likeminded people, express your opinions,
+        and establish an online presence.</strong>
+    </p>
+    <a target="_blank" asp-controller="Home" asp-action="Login" class="btn btn-outline-white btn-lg">Write Your Blog
+      <i class="fas fa-book-medical ml-2"></i>
+    </a>
+
+  </div>
+  <!-- Content -->
+</section>
+<!--Section: Jumbotron-->
+<hr class="my-4">
+
+<!--Section: Cards-->
+<section class="pt-5">
+  @foreach(Blog blog in ViewBag.blogs)
+  {
+  <!--Grid row-->
+  <div class="row wow fadeIn">
+
+    <!--Grid column-->
+    <div class="col-lg-5 col-xl-4 mb-4">
+      <!--Featured image-->
+      <div class="view overlay rounded z-depth-1">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRjhRE93s-RqWRhAc-wv_kbyf2n5V-uzsjQBsHVTMOF2oVzes-9"
+          class="card-img-top" alt="">
+        <a href="#">
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-lg-7 col-xl-7 ml-xl-4 mb-4">
+      <h3 class="mb-3 font-weight-bold dark-grey-text">
+        <strong>@blog.title</strong>
+      </h3>
+      <p class="grey-text">@blog.description.Substring(0, 150) ...</p>
+      <a href="home/blog/@blog.id" class="btn btn-primary btn-md">Read More ...</a>
+    </div>
+    <!--Grid column-->
+  </div>
+  <!--Grid row-->
+  <hr class="mb-5">
+  }
+
+  <!--Pagination-->
+  <nav class="d-flex justify-content-center wow fadeIn">
+    <ul class="pagination pg-blue">
+      <li class="page-item">
+        <a class="page-link" asp-controller="Home" asp-action="Blogs">View All Blogs ...</a>
+      </li>
+    </ul>
+  </nav>
+  <!--Pagination-->
+
+</section>
+<!--Section: Cards-->

@@ -1,0 +1,84 @@
+@model User
+@{
+Layout="~/Views/Shared/UserLayout.cshtml";
+ViewData["Title"] = "Update Profile Page";
+}
+
+@section Navigation{
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Index">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="AddBlog">Add Blog</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Notifications">Notifications</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Profile">Profile</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="UpdateProfile">Update Profile</a>
+</li>
+}
+
+<div class="row">
+    <div class="col-3"></div>
+    <!-- Table with panel -->
+    <div class="card card-cascade narrower col-sm-6 text-center">
+        <!--Card image-->
+        <div class="view view-cascade gradient-card-header blue-gradient narrower align-items-center">
+            <h5 class="white-text"> <b>Update Profile</b></h5>
+        </div>
+        <!--/Card image-->
+
+        <div class="px-4">;
+            <div class="table-wrapper">
+                <form class="text-center border border-light p-5" method="post" asp-action="UpdateProfile"
+                    asp-controller="User">
+                    <!--Table-->
+                    <table class="table table-hover mb-0">
+                        <!--Table body-->
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <td><input type="text" class="form-control mb-4" asp-for="name"
+                                        value="@ViewBag.user.name">
+                                    <span asp-validation-for="name" class="text-danger"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td><input type="email" class="form-control mb-4" asp-for="email"
+                                        value="@ViewBag.user.email">
+                                    <span asp-validation-for="email" class="text-danger"></span>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <th>Mobile</th>
+                                <td><input type="number" class="form-control mb-4" asp-for="mobile"
+                                        value="@ViewBag.user.mobile"></td>
+                                <span asp-validation-for="mobile" class="text-danger"></span>
+                            </tr>
+                            <tr>
+                                <th>Password</th>
+                                <td><input type="text" class="form-control mb-4" asp-for="password"
+                                        value="@ViewBag.user.password"></td>
+                                <span asp-validation-for="password" class="text-danger"></span>
+                            </tr>
+                        </tbody>
+                        <!--Table body-->
+                    </table>
+                    <!--Table-->
+                    <hr>
+                    <input type="hidden" asp-for="dateTime" value="@ViewBag.user.dateTime">
+                    <input type="hidden" asp-for="id" value="@ViewBag.user.id">
+                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Table with panel -->
+    <div class="col-3"></div>
+</div>

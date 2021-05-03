@@ -1,0 +1,75 @@
+@model User
+@{
+Layout="~/Views/Shared/UserLayout.cshtml";
+ViewData["Title"] = "Profile Page";
+}
+
+@section Navigation{
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Index">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="AddBlog">Add Blog</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Notifications">Notifications</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Profile">Profile</a>
+</li>
+}
+
+<div class="row">
+    <div class="col-3"></div>
+    <!-- Table with panel -->
+    <div class="card card-cascade narrower col-sm-6 text-center">
+
+        <!--Card image-->
+        <div class="view view-cascade gradient-card-header blue-gradient narrower align-items-center">
+            <h5 class="white-text"> <b>Profile</b></h5>
+        </div>
+        <!--/Card image-->
+
+        <div class="px-4">
+
+            <div class="table-wrapper">
+                <!--Table-->
+                <table class="table table-hover mb-0">
+                    <!--Table body-->
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>@ViewBag.user.name</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>@ViewBag.user.email</td>
+                        </tr>
+                        <tr>
+
+                            <th>Mobile</th>
+                            <td>@ViewBag.user.mobile</td>
+                        </tr>
+                        <tr>
+                            <th>Password</th>
+                            <td>@ViewBag.user.password</td>
+                        </tr>
+                    </tbody>
+                    <!--Table body-->
+                </table>
+                <!--Table-->
+                <hr>
+                <a class="btn btn-sm btn-primary" asp-controller="User" asp-action="UpdateProfile">Update Profile</a>
+            </div>
+            @if(TempData["Message"] != null)
+            {
+            <div class='alert @TempData["Class"]'>
+                @TempData["Message"]
+            </div>
+            }
+        </div>
+
+    </div>
+    <!-- Table with panel -->
+    <div class="col-3"></div>
+</div>

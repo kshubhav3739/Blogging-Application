@@ -1,0 +1,58 @@
+@model Blog
+@{
+Layout="~/Views/Shared/UserLayout.cshtml";
+ViewData["Title"] = "Update Blog Page";
+}
+
+@section Navigation{
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Index">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="AddBlog">Add Blog</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Notifications">Notifications</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Profile">Profile</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="DeleteProfile">Update Blog</a>
+</li>
+}
+
+
+<div class="row">
+    <div class="col-3"></div>
+
+    <div class="col-sm-6">
+        <form class="text-center border border-light p-5" method="post" asp-action="UpdateBlog" asp-controller="User">
+
+            <p class="h4 mb-4">Update Blog</p>
+
+            <!-- Name -->
+            <input type="text" class="form-control mb-4" asp-for="title" value="@ViewBag.blog.title">
+            <span asp-validation-for="title" class="text-danger"></span>
+
+            <!--<div class="form-group">
+                <textarea class="form-control" id="textarea" asp-for="description"
+                    rows="7">@ViewBag.blog.description</textarea>
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div> -->
+            <div class="form-group">
+                @Html.TextArea("description", (string)ViewBag.blog.description,7,20,new { @class = "form-control"})
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="id" value="@ViewBag.blog.id">
+            <input type="hidden" asp-for="userId" value="@ViewBag.blog.userId">
+            <input type="hidden" asp-for="dateTime" value="@ViewBag.blog.dateTime">
+            <!-- Sign up button -->
+            <button class="btn btn-info my-4 btn-block" type="submit">Update Blog</button>
+
+            <hr>
+        </form>
+    </div>
+
+    <div class="col-3"></div>
+</div>

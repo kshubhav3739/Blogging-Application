@@ -1,0 +1,154 @@
+@model Comment
+@{
+Layout="~/Views/Shared/HomeLayout.cshtml";
+ViewData["Title"] = "Blog Page";
+}
+
+@section Navigation{
+<li class="nav-item">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Index">Home</a>
+</li>
+<li class="nav-item active">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Blogs">Blogs</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Login">Login</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Register">Register</a>
+</li>
+}
+
+<!--Section: Post-->
+<section class="mt-4">
+
+  <!--Grid row-->
+  <div class="row">
+
+    <!--Grid column-->
+    <div class="col-md-8 mb-4">
+
+      <!--Card-->
+      <div class="card mb-4 wow fadeIn">
+        <!--Card content-->
+        <div class="card-body">
+          <p class="h4 my-4 text-center">@ViewBag.blog.title</p>
+          <hr>
+          <p>@ViewBag.blog.description</p>
+          <hr>
+          <p class="text-right grey-text">By- @ViewBag.name (@ViewBag.blog.dateTime)</p>
+        </div>
+      </div>
+      <!--/.Card-->
+
+      <!--Comments-->
+      <div class="card card-comments mb-3 wow fadeIn">
+        <div class="card-header font-weight-bold">Comments</div>
+        <div class="card-body">
+          @foreach(Comment comment in ViewBag.comments)
+          {
+          <div class="media d-block d-md-flex mt-4">
+            <img class="d-flex mb-3 mx-auto " src="/img/comment.png" alt="Comment">
+            <div class="media-body text-center text-md-left ml-md-3 ml-0">
+              <h5 class="mt-0 font-weight-bold">@comment.name
+                <a href="" class="pull-right">
+                  <i class="fas fa-reply"></i>
+                </a>
+                <div style="font-size: 12px;">
+                  @comment.email
+                </div>
+              </h5>
+              @comment.commentDes
+              <br>
+              <div style="font-size: 12px;">
+                @comment.dateTime
+              </div>
+
+
+            </div>
+          </div>
+          <hr>
+          }
+        </div>
+      </div>
+      <!--/.Comments-->
+
+      <!--Reply-->
+      <div class="card mb-3 wow fadeIn">
+        <div class="card-header font-weight-bold">Leave a Comment</div>
+        <div class="card-body">
+
+          <!-- Default form comment -->
+          <form method="post" asp-action="Blog" asp-controller="Home">
+            <input type="hidden" asp-for="blogId" value="@ViewBag.blog.id">
+            <!-- Comment -->
+            <div class="form-group">
+              <label for="commentDes">Your Comment</label>
+              <textarea class="form-control" asp-for="commentDes" rows="3"></textarea>
+              <span asp-validation-for="commentDes" class="text-danger"></span>
+            </div>
+
+            <!-- Name -->
+            <label for="name">Your Name</label>
+            <input type="text" asp-for="name" class="form-control">
+            <span asp-validation-for="name" class="text-danger"></span>
+            <br>
+
+            <!-- Email -->
+            <label for="email">Your E-mail</label>
+            <input type="email" asp-for="email" class="form-control">
+            <span asp-validation-for="email" class="text-danger"></span>
+
+            <div class="text-center mt-4">
+              <button class="btn btn-info btn-md" type="submit">Submit Comment</button>
+            </div>
+          </form>
+          <!-- Default form reply -->
+
+
+
+        </div>
+      </div>
+      <!--/.Reply-->
+
+    </div>
+    <!--Grid column-->
+    <div class="col-md-4 mb-4">
+
+      <!--Card-->
+      <div class="card mb-4 wow fadeIn">
+
+        <div class="card-header">Other Blogs by - @ViewBag.name </div>
+
+        <!--Card content-->
+        <div class="card-body">
+
+          <ul class="list-unstyled">
+            @foreach(Blog blog in ViewBag.blogs)
+            {
+            <li class="media">
+              <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder6.jpg"
+                alt="Generic placeholder image">
+              <div class="media-body">
+                <a href="@blog.id">
+                  <h5 class="mt-0 mb-1 font-weight-bold">@blog.title</h5>
+                </a>
+                @blog.description.Substring(0,45) (...)
+                <hr>
+              </div>
+            </li>
+            }
+          </ul>
+
+        </div>
+
+      </div>
+      <!--/.Card-->
+
+    </div>
+    <!--Grid column-->
+
+  </div>
+  <!--Grid row-->
+
+</section>

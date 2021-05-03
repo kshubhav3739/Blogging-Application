@@ -1,0 +1,66 @@
+@{
+Layout="~/Views/Shared/UserLayout.cshtml";
+ViewData["Title"] = "Home Page";
+}
+
+@section Navigation{
+<li class="nav-item active">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Index">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="AddBlog">Add Blog</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Notifications">Notifications</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Profile">Profile</a>
+</li>
+}
+
+@if(TempData["Message"] != null)
+{
+<div class='alert @TempData["Class"]'>
+    @TempData["Message"]
+</div>
+}
+<!--Grid row-->
+<div class="row mb-4 wow fadeIn">
+    @foreach(Blog blog in ViewBag.blogs )
+    {
+    <!--Grid column-->
+    <div class="col-lg-4 col-md-12 mb-4">
+
+        <!--Card-->
+        <div class="card">
+
+            <!--Card image-->
+            <div class="view overlay">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRjhRE93s-RqWRhAc-wv_kbyf2n5V-uzsjQBsHVTMOF2oVzes-9"
+                    class="card-img-top" alt="">
+                <a href="#" target="_blank">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+            <!--Card content-->
+            <div class="card-body">
+                <!--Title-->
+                <h4 class="card-title">@blog.title</h4>
+                <hr>
+                <!--Text-->
+                <p class="card-text">@blog.description.Substring(0, 150) ...</p>
+                <a class="btn btn-primary btn-sm btn-md" href="user/updateblog/@blog.id">Update <i
+                        class="far fa-edit"></i></a>
+                <a class="btn btn-danger  btn-sm btn-md" href="user/deleteblog/@blog.id">Delete <i
+                        class="far fa-trash-alt"></i></a>
+            </div>
+        </div>
+        <!--/.Card-->
+    </div>
+    <!--Grid column-->
+    }
+
+
+
+</div>
+<!--Grid row-->

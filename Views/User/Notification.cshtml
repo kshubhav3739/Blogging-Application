@@ -1,0 +1,37 @@
+@{
+Layout="~/Views/Shared/UserLayout.cshtml";
+ViewData["Title"] = "Notification";
+}
+
+@section Navigation{
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Index">Home</a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="AddBlog">Add Blog</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Notification">Notification</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Profile">Profile</a>
+</li>
+}
+
+
+<h1 class="text-center">Notification</h1>
+
+<br>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <div class="card" style="animation:infinite;">
+            <div class="card-body" style="border-style:groove; font-style: italic;">
+                John Commented on your (facebook)Blog.
+                (Comment)
+            </div>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>

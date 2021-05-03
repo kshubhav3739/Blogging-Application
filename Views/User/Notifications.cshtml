@@ -1,0 +1,39 @@
+@{
+Layout="~/Views/Shared/UserLayout.cshtml";
+ViewData["Title"] = "Notifications Page";
+}
+
+@section Navigation{
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Index">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="AddBlog">Add Blog</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Notifications">Notifications</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Profile">Profile</a>
+</li>
+}
+
+@foreach(Notification notification in ViewBag.notifications )
+{
+<!--Card-->
+<div class="card mb-4 wow fadeIn">
+    <div class="card-header">
+        <span>@notification.dateTime</span>
+    </div>
+    <!--Card content-->
+    <div class="card-body">
+        <div class="media d-block d-md-flex ">
+            <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                <b> @notification.name </b>commented on your Blog (@notification.blogTitle) <br>
+                <b>Comment - </b> @notification.comment
+            </div>
+        </div>
+    </div>
+</div>
+<!--/.Card-->
+}

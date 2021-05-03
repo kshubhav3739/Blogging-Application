@@ -1,0 +1,27 @@
+@model Comment
+@{
+Layout="~/Views/Shared/HomeLayout.cshtml";
+ViewData["Title"] = "Blog Page";
+}
+
+@section Navigation{
+<li class="nav-item">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Index">Home</a>
+</li>
+<li class="nav-item active">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Blogs">Blogs</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Login">Login</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Register">Register</a>
+</li>
+}
+
+<li>@ViewBag.com.id</li>
+<li>@ViewBag.com.name</li>
+<li>@ViewBag.com.email</li>
+<li>@ViewBag.com.commentDes</li>
+<li>@ViewBag.com.dateTime</li>
+<li>@ViewBag.com.blogId</li>

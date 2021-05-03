@@ -1,0 +1,55 @@
+@model Blog
+@{
+Layout="~/Views/Shared/UserLayout.cshtml";
+ViewData["Title"] = "Add Blog Page";
+}
+
+@section Navigation{
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Index">Home</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="AddBlog">Add Blog</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Notifications">Notifications</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link waves-effect" asp-controller="User" asp-action="Profile">Profile</a>
+</li>
+}
+
+<div class="row">
+    <div class="col-3"></div>
+
+    <div class="col-sm-6">
+        <form class="text-center border border-light p-5" method="post" asp-action="AddBlog" asp-controller="User">
+
+            <p class="h4 mb-4">Create New Blog</p>
+
+            <!-- Name -->
+            <input type="text" class="form-control mb-4" asp-for="title" placeholder="Blog Title">
+            <span asp-validation-for="title" class="text-danger"></span>
+
+            <div class="form-group">
+                <textarea class="form-control" id="textarea" asp-for="description" placeholder="Blog Description"
+                    rows="7"></textarea>
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div>
+
+            <!-- Sign up button -->
+            <button class="btn btn-info my-4 btn-block" type="submit">Add Blog</button>
+
+            <hr>
+
+            @if(TempData["Message"] != null)
+            {
+            <div class='alert @TempData["Class"]'>
+                @TempData["Message"]
+            </div>
+            }
+        </form>
+    </div>
+
+    <div class="col-3"></div>
+</div>

@@ -1,0 +1,64 @@
+@model User
+@{
+Layout="~/Views/Shared/HomeLayout.cshtml";
+ViewData["Title"] = "Register Page";
+}
+
+@section Navigation{
+<li class="nav-item">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Index">Home</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Blogs">Blogs</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Login">Login</a>
+</li>
+<li class="nav-item active">
+  <a class="nav-link waves-effect" asp-controller="Home" asp-action="Register">Register</a>
+</li>
+}
+
+<div class="row">
+  <div class="col-3"></div>
+
+  <div class="col-sm-6">
+    <form class="text-center border border-light p-5" method="post" asp-action="Register" asp-controller="Home">
+
+      <p class="h4 mb-4">Register</p>
+
+      <!-- Name -->
+      <input type="text" class="form-control mb-4" asp-for="name" placeholder="Name">
+      <span asp-validation-for="name" class="text-danger"></span>
+
+      <!-- E-mail -->
+      <input type="email" class="form-control mb-4" asp-for="email" placeholder="E-mail">
+      <span asp-validation-for="email" class="text-danger"></span>
+
+      <!-- Phone number -->
+      <input type="number" class="form-control mb-4" asp-for="mobile" placeholder="Mobile number">
+      <span asp-validation-for="mobile" class="text-danger"></span>
+
+      <!-- Password -->
+      <input type="password" class="form-control mb-4" asp-for="password" placeholder="Password">
+      <span asp-validation-for="password" class="text-danger"></span>
+
+      <!-- Sign up button -->
+      <button class="btn btn-info my-4 btn-block" type="submit">Register</button>
+
+      <hr>
+
+      <p>Already a member?
+        <a asp-controller="Home" asp-action="Login">Login</a>
+      </p>
+      @if(TempData["Message"] != null)
+      {
+      <div class='alert @TempData["Class"]'>
+        @TempData["Message"]
+      </div>
+      }
+    </form>
+  </div>
+
+  <div class="col-3"></div>
+</div>
